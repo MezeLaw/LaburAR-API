@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:12
+    restart: always
+    container_name: postgres-trabajo-libre-db
+    environment:
+      POSTGRES_DB: trabajoLibre
+      POSTGRES_USER: meze
+      POSTGRES_PASSWORD: meze
+    networks:
+      - laburAREnv
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./database-scripts/1-users.sql:/docker-entrypoint-initdb.d/1-users.sql
+      #- ./database-scripts/2-users.sql:/docker-entrypoint-initdb.d/2-users.sql
+      #- ./database-scripts/3-user_lists.sql:/docker-entrypoint-initdb.d/3-user_lists.sql
+      #- ./database-scripts/4-tasks.sql:/docker-entrypoint-initdb.d/4-tasks.sql
+    ports:
+      - "5432:5432"
+  ##app:POSTGRES_USER=meze;POSTGRES_PASSWORD=meze;POSTGRES_IP=postgres;POSTGRES_PORT=5432;DB_NAME=trabajoLibre
+    ##build:
+      ##context: .
+      ##dockerfile: Dockerfile
+    ##ports:
+      ##- "8080:8080"
+    ##depends_on:
+      ##- postgres
+      ##- redis
+    ##links:
+      ##- postgres
+      ##- redis
+    ##environment:
+      ##∫POSTGRES_USER: "meze"
+      ##POSTGRES_PASSWORD: "meze"
+      ##POSTGRES_IP: postgres
+      ##POSTGRES_PORT: 5432
+      ##DB_NAME: trabajoLibre
+      ##REDIS_URL: redis:6379
+    ##networks:
+      ##- laburAREnv
+networks:
+  laburAREnv: # network to comunicate containers with each other
+
+
+
+
+

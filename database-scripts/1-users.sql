@@ -1,0 +1,20 @@
+CREATE TABLE public.users (
+                              id serial PRIMARY KEY,
+                              email          varchar(150) NOT NULL,
+                              password       varchar(150) NOT NULL,
+                              first_name      varchar(150) NOT NULL,
+                              last_name      varchar(150) NOT NULL,
+                              DNI             int,
+                              city            varchar(150) NOT NULL,
+                              province        varchar(150) NOT NULL,
+                              address_street   varchar(150) NOT NULL,
+                              address_number   varchar(150) NOT NULL,
+                              apartment       varchar(150) NOT NULL,
+                              account_verified bool,
+                              role varchar(5) null DEFAULT 'USER',
+                              created_at timestamp without time zone null DEFAULT CURRENT_TIMESTAMP,
+                              updated_at timestamp without time zone null DEFAULT NULL,
+                              deleted_at timestamp without time zone null DEFAULT NULL,
+                              CONSTRAINT unique_documento UNIQUE (dni),
+                              CONSTRAINT unique_email UNIQUE (email)
+);
